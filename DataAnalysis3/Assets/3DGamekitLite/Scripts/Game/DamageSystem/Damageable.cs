@@ -5,11 +5,15 @@ using UnityEngine.Events;
 using Gamekit3D.Message;
 using UnityEngine.Serialization;
 
+
 namespace Gamekit3D
 {
+    
     public partial class Damageable : MonoBehaviour
     {
 
+        //Data
+        private int enemyKilled = 0;
         public int maxHitPoints;
         [Tooltip("Time that this gameObject is invulnerable for, after receiving damage.")]
         public float invulnerabiltyTime;
@@ -74,6 +78,9 @@ namespace Gamekit3D
         {
             if (currentHitPoints <= 0)
             {//ignore damage if already dead. TODO : may have to change that if we want to detect hit on death...
+
+                //Death data
+                StartCoroutine(SendData(ProcessData()));
                 return;
             }
 
@@ -107,6 +114,24 @@ namespace Gamekit3D
             {
                 var receiver = onDamageMessageReceivers[i] as IMessageReceiver;
                 receiver.OnReceiveMessage(messageType, this, data);
+            }
+        }
+
+        public WWWForm ProcessData()
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("enemyKilled", enemyKilled);
+            return form;
+        }
+
+        public IEnumerator SendData(WWWForm form)
+        {
+            WWW www = new WWW("https://citmalumnes.upc.es/~jordiea3/Kills.php");
+            yield return www;
+
+            if(!string.IsNullOrEmpty(www.error))
+            {
+                Debug.Log(www.error);
             }
         }
 
