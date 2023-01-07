@@ -80,7 +80,7 @@ namespace Gamekit3D
             {//ignore damage if already dead. TODO : may have to change that if we want to detect hit on death...
 
                 //Death data
-                StartCoroutine(SendData(ProcessData()));
+                
                 return;
             }
 
@@ -104,7 +104,12 @@ namespace Gamekit3D
             currentHitPoints -= data.amount;
 
             if (currentHitPoints <= 0)
+            {
+                enemyKilled++;
+                StartCoroutine(SendData(ProcessData()));
                 schedule += OnDeath.Invoke; //This avoid race condition when objects kill each other.
+            }
+                
             else
                 OnReceiveDamage.Invoke();
 
