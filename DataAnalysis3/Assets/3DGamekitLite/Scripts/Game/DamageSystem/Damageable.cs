@@ -105,8 +105,6 @@ namespace Gamekit3D
 
             if (currentHitPoints <= 0)
             {
-                enemyKilled++;
-                StartCoroutine(SendData(ProcessData()));
                 schedule += OnDeath.Invoke; //This avoid race condition when objects kill each other.
             }
                 
@@ -122,23 +120,7 @@ namespace Gamekit3D
             }
         }
 
-        public WWWForm ProcessData()
-        {
-            WWWForm form = new WWWForm();
-            form.AddField("enemyKilled", enemyKilled);
-            return form;
-        }
-
-        public IEnumerator SendData(WWWForm form)
-        {
-            WWW www = new WWW("https://citmalumnes.upc.es/~jordiea3/Kills.php");
-            yield return www;
-
-            if(!string.IsNullOrEmpty(www.error))
-            {
-                Debug.Log(www.error);
-            }
-        }
+        
 
         void LateUpdate()
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Gamekit3D;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -112,6 +113,11 @@ namespace Gamekit3D
                 audioCanvas.SetActive(false);
 
             m_InPause = !m_InPause;
+        }
+
+        public void ChangeScene()
+        {
+            SceneManager.LoadScene(1);
         }
     }
 }

@@ -17,10 +17,13 @@
     }
     // Grab data from users 
     $deaths = $_POST["deaths"];
+    $posX = $_POST["posX"];
+    $posY = $_POST["posY"];
+    $posZ = $_POST["posZ"];
     
     // Insert data into users table
-    $sql = "INSERT INTO Player (Deaths)
-            VALUES('$deaths')";
+    $sql = "INSERT INTO Player (Deaths,PositionX,PositionY,PositionZ)
+            VALUES('$deaths','$posX','$posY','$posZ')";
     $result = mysqli_query($connection,$sql);
 
     $last_id = $connection->insert_id;

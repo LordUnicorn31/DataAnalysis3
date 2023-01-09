@@ -16,11 +16,11 @@
         die("no connection" . mysqli_connect_error());
     }
     // Grab data from users 
-    $enemyKilled = $_POST["enemyKilled"];
+    $enemyCount = $_POST["enemyCount"];
     
     // Insert data into users table
     $sql = "INSERT INTO Kills (Enemies)
-            VALUES('$enemyKilled')";
+            VALUES('$enemyCount')";
     $result = mysqli_query($connection,$sql);
 
     $last_id = $connection->insert_id;
