@@ -5,16 +5,39 @@ using UnityEngine.Analytics;
 
 public class DataRetriever : MonoBehaviour
 {
-    private string data;
-    public Vector3 positions;
-    void Start()
+    public class Cube
     {
-        // Send a request to the PHP script
-        StartCoroutine(ImportData());
-        StartAnalysis();
+        public Vector3 position;
+        public int times = 0;
+
+        //Constructor
+        public Cube(Vector3 position)
+        {
+            this.position = position;
+            this.times = 0;
+        }
     }
 
-    IEnumerator ImportData()
+    private string data;
+    public List<Cube> cubes;
+    public GameObject CubeParent;
+    [Header("Cube creation")]
+    public GameObject cubePrefab;
+    public Material heatmapMaterial;
+    public int maxDensity = 20;
+    public int maxDistance = 2;
+    
+
+    private void Awake()
+    {
+        cubes = new List<Cube>();
+    }
+    void Start()
+    {
+        StartCoroutine(StartAnalysis());
+    }
+
+    private IEnumerator ImportData()
     {
         string url = "https://citmalumnes.upc.es/~jordiea3/data.php"; // Replace with the URL of the PHP script
         WWW www = new WWW(url);
@@ -32,20 +55,18 @@ public class DataRetriever : MonoBehaviour
         }
     }
 
-    private void StartAnalysis()
+    private IEnumerator StartAnalysis()
     {
-        var state = new Dictionary<string, object>();
-        state["deaths"] = data;
+        yield return ImportData();
 
-        var result = Analytics.CustomEvent("data",state);
-        Debug.Log("Analysis: " + result.ToString());
+        PlotAnalysis();
     }
+
 
     private void DataConverter(string dat)
     {
         var sStrings = dat.Split("\"");
         List<int> ints = new List<int>();
-        List<Vector3> positions = new List<Vector3>();
 
         foreach (string s in sStrings)
         {
@@ -55,28 +76,56 @@ public class DataRetriever : MonoBehaviour
             }
         }
 
-        //foreach (int i in ints)
-        //{
-        //    Debug.Log(i.ToString());
-
-        //}
-
-        for (int j = 1; j <= ints.Count; ++j)
+        for (int j = 0; j < ints.Count; j+=3)
         {
             Vector3 position = new Vector3((float)ints[j], (float)ints[j+1], (float)ints[j+2]);
-            if (j % 3 == 0 || j == 1)
+
+            bool isNear = false;
+
+            for (int i = 0; i < cubes.Count; ++i)
             {
-                positions.Add(position);
+                if (cubes[i].position == position) continue;
+
+                if(Vector3.Distance(cubes[i].position,position) < maxDistance)
+                {
+                    isNear = true;
+                    cubes[i].times++;
+                    break;
+                }
+            }
+            if(!isNear)
+            {
+                cubes.Add(new Cube(position));
                 Debug.Log(position.ToString());
             }
+            
+        } 
+
+    }
+
+    private void HeatMap()
+    {
+        foreach (Cube cube  in cubes)
+        {
+            GameObject c = Instantiate(cubePrefab, cube.position, Quaternion.identity);
+            c.transform.SetParent(CubeParent.transform);
+            Renderer render = c.GetComponent<Renderer>();
+            float ratio = (float)cube.times / maxDensity;
+            if (ratio > 1) ratio = 1;
+            ratio = (ratio - 1) * -1;
+            Color cubeColor = new Color(1, ratio, ratio, 1);
+            render.material.color = cubeColor;
         }
+    }
 
-        //float x = float.Parse(posStrings[0]);
-        //float y = float.Parse(posStrings[1]);
-        //float z = float.Parse(posStrings[2]);
+    public void RemoveCubes()
+    {
+        Destroy(this.gameObject);
+    }
 
-        //positions = new Vector3(x, y, z);
-        //Debug.Log(positions.ToString());
+    public void PlotAnalysis()
+    {
+        HeatMap();
     }
 
 }

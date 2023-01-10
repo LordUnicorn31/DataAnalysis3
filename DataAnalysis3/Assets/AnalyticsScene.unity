@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 249888072}
-  - component: {fileID: 249888073}
   m_Layer: 0
   m_Name: Heatmap
   m_TagString: Untagged
@@ -148,28 +147,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249888071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.263847, y: 9.284309, z: -6.604252}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &249888073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249888071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0675faa84650aa74e950ca440ff9b0b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cubePrefab: {fileID: 2993984654773243967, guid: 9a64b6537797c3c488f06f0c6a8959a3,
-    type: 3}
-  heatmapMaterial: {fileID: 2100000, guid: 78d1b1327a2078b418bf196344b84c35, type: 2}
 --- !u!1 &386621095
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,3 +389,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca25d72b383e45a428aeb87b5693728b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CubeParent: {fileID: 249888071}
+  cubePrefab: {fileID: 2993984654773243967, guid: 9a64b6537797c3c488f06f0c6a8959a3,
+    type: 3}
+  heatmapMaterial: {fileID: 2100000, guid: 78d1b1327a2078b418bf196344b84c35, type: 2}
+  maxDensity: 20
+  maxDistance: 4

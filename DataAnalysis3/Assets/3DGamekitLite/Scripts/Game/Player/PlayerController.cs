@@ -691,7 +691,6 @@ namespace Gamekit3D
         public WWWForm ProcessData()
         {
             WWWForm form = new WWWForm();
-            form.AddField("deaths", deaths);
             form.AddField("posX", (int)transform.position.x);
             form.AddField("posY", (int)transform.position.y);
             form.AddField("posZ", (int)transform.position.z);
