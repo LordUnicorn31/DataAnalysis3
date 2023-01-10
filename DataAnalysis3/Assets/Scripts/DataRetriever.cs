@@ -1,13 +1,16 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Analytics;
 
 public class DataRetriever : MonoBehaviour
 {
-
+    private string data;
     void Start()
     {
         // Send a request to the PHP script
         StartCoroutine(ImportData());
+        StartAnalysis();
     }
 
     IEnumerator ImportData()
@@ -22,9 +25,18 @@ public class DataRetriever : MonoBehaviour
         }
         else
         {
-            string data = www.text;
-            // Do something with the data, for example, you can parse it as JSON using SimpleJSON or other libraries
+            data = www.text;
             Debug.Log(data);
         }
     }
+
+    private void StartAnalysis()
+    {
+        var state = new Dictionary<string, object>();
+        state["deaths"] = data;
+
+        var result = Analytics.CustomEvent("data",state);
+        Debug.Log("Analysis: " + result.ToString());
+    }
+
 }
