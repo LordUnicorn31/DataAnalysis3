@@ -1,0 +1,17 @@
+You can create a heatmap in Unity using cubes by following these steps:
+
+Create a new Unity project and create a new GameObject in the scene. This will serve as the parent object for all of the cubes in the heatmap.
+
+Create a prefab of a cube by right-clicking in the Project window and selecting "Create > 3D Object > Cube."
+
+Create a script that will generate the heatmap by instantiating the cube prefab and positioning it at the appropriate location based on the data you are visualizing. In this script, you will also need to set the scale and color of each cube based on the data.
+
+Add the script to the parent object you created in step 1, and set the appropriate variables (such as the data array and the maximum and minimum values) in the script's inspector.
+
+Create an array to hold the data that you will be visualizing. This data can be generated randomly or read in from a file. The array should be 2D and the size should be equal to the size of the heatmap.
+
+In the Update method of the script, use a nested for loop to instantiate the cube prefab at the appropriate location, set the scale and color based on the data, and add it to the parent object as a child.
+
+Run the game, and you should see a heatmap made of cubes, with each cube's color and scale indicating the value of the data at that point.
+
+You can play with the material of the cube, so that it gives you different effect. You can also use particle system to create heatmap. But as you asked for cubes, i have explained the process of creating a heatmap using cubes.
