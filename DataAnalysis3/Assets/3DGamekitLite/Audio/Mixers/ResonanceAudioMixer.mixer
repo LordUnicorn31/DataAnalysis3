@@ -194,7 +194,7 @@ AudioMixerEffectController:
   m_EffectName: Send
   m_MixLevel: eed085207cc454b48b9db1c7c49228e4
   m_Parameters: []
-  m_SendTarget: {fileID: 244999882013218080}
+  m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
 --- !u!244 &244960038372969264

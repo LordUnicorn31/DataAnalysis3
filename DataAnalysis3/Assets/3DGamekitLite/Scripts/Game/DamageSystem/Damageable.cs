@@ -5,15 +5,11 @@ using UnityEngine.Events;
 using Gamekit3D.Message;
 using UnityEngine.Serialization;
 
-
 namespace Gamekit3D
 {
-    
     public partial class Damageable : MonoBehaviour
     {
 
-        //Data
-        private int enemyKilled = 0;
         public int maxHitPoints;
         [Tooltip("Time that this gameObject is invulnerable for, after receiving damage.")]
         public float invulnerabiltyTime;
@@ -78,9 +74,6 @@ namespace Gamekit3D
         {
             if (currentHitPoints <= 0)
             {//ignore damage if already dead. TODO : may have to change that if we want to detect hit on death...
-
-                //Death data
-                
                 return;
             }
 
@@ -104,10 +97,7 @@ namespace Gamekit3D
             currentHitPoints -= data.amount;
 
             if (currentHitPoints <= 0)
-            {
                 schedule += OnDeath.Invoke; //This avoid race condition when objects kill each other.
-            }
-                
             else
                 OnReceiveDamage.Invoke();
 
@@ -119,8 +109,6 @@ namespace Gamekit3D
                 receiver.OnReceiveMessage(messageType, this, data);
             }
         }
-
-        
 
         void LateUpdate()
         {

@@ -9,17 +9,12 @@ namespace Gamekit3D
     [RequireComponent(typeof(Animator))]
     public class PlayerController : MonoBehaviour, IMessageReceiver
     {
-
-        //Data
-        private int deaths = 0;
-        
         protected static PlayerController s_Instance;
         public static PlayerController instance { get { return s_Instance; } }
 
         public bool respawning { get { return m_Respawning; } }
 
         public float maxForwardSpeed = 8f;        // How fast Ellen can run.
-        public string url = "https://citmalumnes.upc.es/~jordiea3/Player.php";
         public float gravity = 20f;               // How fast Ellen accelerates downwards when airborne.
         public float jumpSpeed = 10f;             // How fast Ellen takes off when jumping.
         public float minTurnSpeed = 400f;         // How fast Ellen turns when moving at maximum speed.
@@ -682,30 +677,6 @@ namespace Gamekit3D
             m_VerticalSpeed = 0f;
             m_Respawning = true;
             m_Damageable.isInvulnerable = true;
-
-            //Send Death data
-            deaths++;
-            StartCoroutine(SendData(ProcessData()));
-        }
-
-        public WWWForm ProcessData()
-        {
-            WWWForm form = new WWWForm();
-            form.AddField("posX", (int)transform.position.x);
-            form.AddField("posY", (int)transform.position.y);
-            form.AddField("posZ", (int)transform.position.z);
-            return form;
-        }
-
-        public IEnumerator SendData(WWWForm form)
-        {
-            WWW www = new WWW("https://citmalumnes.upc.es/~jordiea3/Player.php", form);
-            yield return www;
-
-            if(!string.IsNullOrEmpty(www.error))
-            {
-                Debug.Log(www.error);
-            }
         }
     }
 }
