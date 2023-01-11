@@ -11193,6 +11193,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: AnalyticsSceneLogic, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 8045876111154252848, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -228
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376834508784688284, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -225
+      objectReference: {fileID: 0}
     - target: {fileID: 8784000976911217979, guid: 468eec99d83c1f746842bae79932b6b5,
         type: 3}
       propertyPath: m_Pivot.x
