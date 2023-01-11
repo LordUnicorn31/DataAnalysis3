@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Gamekit3D;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -34,6 +35,11 @@ namespace Gamekit3D
             }
 
             m_Directors = FindObjectsOfType<PlayableDirector> ();
+        }
+
+        public void ChangeScene()
+        {
+            SceneManager.LoadScene(1);
         }
 
         public void Quit()

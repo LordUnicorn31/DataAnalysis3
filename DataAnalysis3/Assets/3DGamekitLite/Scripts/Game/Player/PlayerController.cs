@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using Gamekit3D.Message;
 using System.Collections;
 using UnityEngine.XR.WSA;
@@ -10,6 +11,9 @@ namespace Gamekit3D
     public class PlayerController : MonoBehaviour, IMessageReceiver
     {
         protected static PlayerController s_Instance;
+
+        // Data harvesting
+        public static Action<Vector3> onPlayerDeath;
         public static PlayerController instance { get { return s_Instance; } }
 
         public bool respawning { get { return m_Respawning; } }
@@ -205,7 +209,12 @@ namespace Gamekit3D
             TimeoutToIdle();
 
             m_PreviouslyGrounded = m_IsGrounded;
+
+            if (Input.GetKeyDown(KeyCode.K)) InstantDeath();
         }
+
+        // Death debugging
+        void InstantDeath() => Die(new Damageable.DamageMessage());
 
         // Called at the start of FixedUpdate to record the current state of the base layer of the animator.
         void CacheAnimatorState()
@@ -677,6 +686,8 @@ namespace Gamekit3D
             m_VerticalSpeed = 0f;
             m_Respawning = true;
             m_Damageable.isInvulnerable = true;
+
+            onPlayerDeath?.Invoke(transform.position);
         }
     }
 }

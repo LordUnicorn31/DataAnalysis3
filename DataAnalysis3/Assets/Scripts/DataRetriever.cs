@@ -109,7 +109,7 @@ public class DataRetriever : MonoBehaviour
         {
             GameObject c = Instantiate(cubePrefab, cube.position, Quaternion.identity);
             c.transform.SetParent(CubeParent.transform);
-            Renderer render = c.GetComponent<Renderer>();
+            Renderer render = c.transform.Find("CubeObject").GetComponent<Renderer>();
             float ratio = (float)cube.times / maxDensity;
             if (ratio > 1) ratio = 1;
             ratio = (ratio - 1) * -1;
