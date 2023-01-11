@@ -2598,6 +2598,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1310672092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3295518716897099107, guid: 468eec99d83c1f746842bae79932b6b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1762186912578101253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1356727948
 Mesh:
   m_ObjectHideFlags: 0
@@ -3295,6 +3307,7 @@ MonoBehaviour:
   zoomOutQuat: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
   zoomInQuat: {x: 0.42261827, y: 0, z: 0, w: 0.90630776}
   zOffset: -35
+  dataR: {fileID: 1639044237}
 --- !u!4 &1639044236
 Transform:
   m_ObjectHideFlags: 0
@@ -3328,6 +3341,20 @@ MonoBehaviour:
   heatmapMaterial: {fileID: 2100000, guid: 78d1b1327a2078b418bf196344b84c35, type: 2}
   maxDensity: 10
   maxDistance: 4
+  deathCountText: {fileID: 1310672092}
+  deathPositionText: {fileID: 1672846961}
+--- !u!114 &1672846961 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4002007816097137345, guid: 468eec99d83c1f746842bae79932b6b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1762186912578101253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1708522026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11178,6 +11205,86 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: AnalyticsSceneLogic, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 2853031837130618908, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 556.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853031837130618908, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 255.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853031837130618908, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853031837130618908, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -33
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257017366076375871, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 542.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257017366076375871, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 73.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257017366076375871, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257017366076375871, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 70.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295518716897099107, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Death Counts: 30'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295518716897099107, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 58
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295518716897099107, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 58
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295518716897099107, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002007816097137345, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Death Counts: 30'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002007816097137345, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002007816097137345, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002007816097137345, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7156431505680993476, guid: 468eec99d83c1f746842bae79932b6b5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -11312,6 +11419,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MenuCanvasesAnalytics
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956544289674726133, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 542.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956544289674726133, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 73.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956544289674726133, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956544289674726133, guid: 468eec99d83c1f746842bae79932b6b5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -48
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

@@ -1,7 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Analytics;
+using TMPro;
+using System;
+using UnityEngine.UI;
 
 public class DataRetriever : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class DataRetriever : MonoBehaviour
     {
         public Vector3 position;
         public int times = 0;
+        public GameObject cubeObject;
 
         //Constructor
         public Cube(Vector3 position)
@@ -26,6 +29,11 @@ public class DataRetriever : MonoBehaviour
     public Material heatmapMaterial;
     public int maxDensity = 20;
     public int maxDistance = 2;
+
+    [SerializeField] Text deathCountText;
+    [SerializeField] Text deathPositionText;
+
+    private int deathCount = 0;
     
 
     private void Awake()
@@ -35,6 +43,14 @@ public class DataRetriever : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartAnalysis());
+    }
+
+    public void ShowDeaths(bool show)
+    {
+        foreach(Cube c in cubes)
+        {
+            c.cubeObject.transform.Find("TextHolder").gameObject.SetActive(show);
+        }
     }
 
     private IEnumerator ImportData()
@@ -60,6 +76,8 @@ public class DataRetriever : MonoBehaviour
         yield return ImportData();
 
         PlotAnalysis();
+
+        ShowDeaths(false);
     }
 
 
@@ -76,10 +94,12 @@ public class DataRetriever : MonoBehaviour
             }
         }
 
+        deathCount = ints.Count / 3;
+
         for (int j = 0; j < ints.Count; j+=3)
         {
             Vector3 position = new Vector3((float)ints[j], (float)ints[j+1], (float)ints[j+2]);
-
+            
             bool isNear = false;
 
             for (int i = 0; i < cubes.Count; ++i)
@@ -109,12 +129,16 @@ public class DataRetriever : MonoBehaviour
         {
             GameObject c = Instantiate(cubePrefab, cube.position, Quaternion.identity);
             c.transform.SetParent(CubeParent.transform);
+            cube.cubeObject = c;
             Renderer render = c.transform.Find("CubeObject").GetComponent<Renderer>();
             float ratio = (float)cube.times / maxDensity;
             if (ratio > 1) ratio = 1;
             ratio = (ratio - 1) * -1;
             Color cubeColor = new Color(1, ratio, ratio, 1);
             render.material.color = cubeColor;
+            TextMeshPro text = c.transform.Find("TextHolder").transform.Find("Text").GetComponent<TextMeshPro>();
+            int deaths = cube.times + 1;
+            text.text = deaths.ToString();
         }
     }
 
@@ -126,6 +150,8 @@ public class DataRetriever : MonoBehaviour
     public void PlotAnalysis()
     {
         HeatMap();
+        deathCountText.text = "Death count: " + deathCount.ToString();
+        deathPositionText.text = "Death positions: " + cubes.Count.ToString();
     }
 
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class AnalyticsSceneLogic : MonoBehaviour
 {
     private bool zoom = false;
@@ -15,10 +16,11 @@ public class AnalyticsSceneLogic : MonoBehaviour
     [SerializeField] float zOffset;
     private const float initialPosX = 22.2f;
     private const float initialPosZ = 5.9f;
-
+    [SerializeField] DataRetriever dataR;
 
     private void Awake()
     {
+        // Camera stuff
         camera.transform.position = new Vector3(initialPosX, zoomOut, initialPosZ);
         camera.transform.rotation = zoomOutQuat;
         zoom = false;
@@ -40,12 +42,14 @@ public class AnalyticsSceneLogic : MonoBehaviour
         {
             camera.transform.position = new Vector3(camera.transform.position.x, zoomIn, camera.transform.position.z + zOffset);
             camera.transform.rotation = zoomInQuat;
+            dataR.ShowDeaths(true);
         }
 
         else
         {
             camera.transform.position = new Vector3(initialPosX, zoomOut, initialPosZ);
             camera.transform.rotation = zoomOutQuat;
+            dataR.ShowDeaths(false);
         }
     }
 
